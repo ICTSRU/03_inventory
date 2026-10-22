@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="version" content="3.6">
+<title>تسجيل الدخول | جرد أصول البنية التحتية</title>
+<link rel="icon" type="image/png" href="assets/itoc-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script>
+  /* ▼▼▼ CONFIG — change per platform ▼▼▼ */
+  var CONFIG = {
+    WEB_APP_URL: "PASTE_WEB_APP_URL_HERE",          // ⚠️ fill in after Step 4 of the deployment checklist (the new /exec URL)
+    TITLE:       "الدخول إلى جرد أصول البنية التحتية",
+    SUBTITLE:    "المنصة متاحة لمنسوبي جامعة سليمان الراجحي فقط",
+    LOGO:        "assets/itoc-logo.png",
+    VERSION:     "3.6",
+    KEY:         "infra-inventory"                   // short unique id (used for "skip next time")
+  };
+  /* ▲▲▲ CONFIG ▲▲▲ */
+  var WEB_APP_URL = CONFIG.WEB_APP_URL;
+
+  /* "Skip this screen next time" — per-browser preference; open with #login to show this screen again */
+  (function () {
+    try {
+      if (location.hash !== "#login" && localStorage.getItem(CONFIG.KEY + "_skip_intro") === "1" && /^https:\/\/script\.google\.com\//.test(WEB_APP_URL)) location.replace(WEB_APP_URL);
+    } catch (e) {}
+  })();
+</script>
+<style>
+:root{
+  --purple:#501e8c; --purple-dark:#3a1464; --purple-light:#f0ebf8;
+  --blue:#0a6eaa; --teal:#0a8a96; --bg:#f7f5fb; --ink:#241436; --muted:#6b5a80;
+  --border:rgba(80,30,140,.12); --radius:4px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh;background:var(--bg);color:var(--ink);font-family:"Cairo",Tahoma,Arial,sans-serif;line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:0 16px;width:100%}
+
+/* Official header band: SRU right, ICTD left */
+.band{background:#fff;border-bottom:1px solid var(--border)}
+.band .container{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:10px;padding-bottom:10px}
+.band img{display:block;height:54px;width:auto;max-width:44vw;object-fit:contain}
+.band .ictd{height:60px}
+.bar{height:6px;background:linear-gradient(90deg,var(--purple-dark),var(--purple) 60%,var(--blue))}
+
+main{flex:1;display:grid;place-items:center;padding:32px 16px}
+.card{width:100%;max-width:460px;background:#fff;border:1px solid var(--border);border-top:4px solid var(--purple);border-radius:var(--radius);padding:28px 26px 22px;box-shadow:0 10px 30px rgba(58,20,100,.08);text-align:center}
+.card .logo{height:78px;width:auto;margin:0 auto 8px;display:block}
+h1{margin:6px 0 4px;font-size:1.45rem;color:var(--purple-dark);line-height:1.35}
+.sub{margin:0 0 18px;color:var(--muted);font-size:.95rem}
+
+.domain{display:flex;align-items:center;gap:10px;background:var(--purple-light);border:1px dashed rgba(80,30,140,.35);border-radius:var(--radius);padding:10px 12px;margin-bottom:18px;text-align:right}
+.domain svg{flex:none;width:22px;height:22px;color:var(--purple)}
+.domain b{font-family:Arial,sans-serif;direction:ltr;unicode-bidi:isolate;color:var(--purple-dark)}
+.domain span{font-size:.9rem}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--purple);color:#fff;text-decoration:none;font:700 1rem "Cairo",Tahoma,Arial,sans-serif;padding:12px 16px;border-radius:var(--radius);border:0;cursor:pointer;transition:background .15s}
+.btn:hover,.btn:focus-visible{background:var(--purple-dark);outline:none}
+.btn .g{width:22px;height:22px;background:#fff;border-radius:50%;display:grid;place-items:center;flex:none}
+.btn .g svg{width:15px;height:15px}
+
+.steps{list-style:none;margin:20px 0 4px;padding:0;text-align:right;font-size:.88rem;color:var(--muted)}
+.steps li{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+.steps .n{flex:none;width:22px;height:22px;border-radius:50%;background:var(--purple-light);color:var(--purple);font-weight:800;font-size:.78rem;display:grid;place-items:center;font-family:Arial,sans-serif}
+
+.skip{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:.85rem;color:var(--muted);cursor:pointer;user-select:none}
+.skip input{accent-color:var(--purple);width:16px;height:16px}
+
+.en{margin-top:16px;padding-top:12px;border-top:1px solid var(--border);direction:ltr;font-size:.8rem;color:#8a7c9c;font-family:Arial,sans-serif}
+
+footer{background:var(--purple-dark);color:#e6dcf5;font-size:.82rem}
+footer .container{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;padding-top:12px;padding-bottom:12px}
+footer .ver{font-family:Arial,sans-serif;background:rgba(255,255,255,.12);padding:0 8px;border-radius:3px}
+
+@media (max-width:520px){
+  .band img{height:38px}.band .ictd{height:44px}
+  .card{padding:22px 18px 18px}
+  .card .logo{height:62px}
+  h1{font-size:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<div class="band">
+  <div class="container">
+    <img src="assets/sru-logo.png" alt="جامعة سليمان الراجحي | Sulaiman Alrajhi University">
+    <img class="ictd" src="assets/ictd-logo.png" alt="الإدارة التنفيذية للاتصالات وتقنية المعلومات">
+  </div>
+</div>
+<div class="bar"></div>
+
+<main>
+  <div class="card">
+    <img class="logo" id="appLogo" src="assets/itoc-logo.png" alt="">
+    <h1 id="appTitle"></h1>
+    <p class="sub" id="appSub"></p>
+
+    <div class="domain">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+      <span>سجّل الدخول ببريدك الجامعي المنتهي بـ <b>@sr.edu.sa</b> وكلمة المرور الخاصة به.</span>
+    </div>
+
+    <a class="btn" id="go" href="#">
+      <span class="g" aria-hidden="true">
+        <svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.2C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.8c4.3-4 6.9-9.9 6.9-17.2z"/><path fill="#FBBC05" d="M10.6 28.5c-.5-1.4-.8-2.9-.8-4.5s.3-3.1.8-4.5l-7.9-6.2C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.8c-2.1 1.4-4.8 2.3-8.5 2.3-6.2 0-11.5-4.1-13.4-9.8l-7.9 6.2C6.6 42.6 14.6 48 24 48z"/></svg>
+      </span>
+      تسجيل الدخول بحساب الجامعة
+    </a>
+
+    <ol class="steps">
+      <li><span class="n">1</span><span>اضغط الزر أعلاه، فتظهر صفحة تسجيل الدخول من Google.</span></li>
+      <li><span class="n">2</span><span>اختر حسابك الجامعي أو اكتبه (<b dir="ltr">name@sr.edu.sa</b>) ثم كلمة المرور.</span></li>
+      <li><span class="n">3</span><span>تُفتح المنصة مباشرة بعد التحقق.</span></li>
+    </ol>
+
+    <label class="skip"><input type="checkbox" id="skip"> تخطَّ هذه الشاشة في المرات القادمة</label>
+
+    <div class="en">Sign in with your Sulaiman Al Rajhi University Google account (@sr.edu.sa).<br>Your password is entered on Google's page only.</div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div>مركز العمليات التقنية <b dir="ltr">ITOC</b> — الإدارة التنفيذية للاتصالات وتقنية المعلومات — جامعة سليمان الراجحي © 2026</div>
+    <div>الإصدار <span class="ver" dir="ltr" id="appVer"></span></div>
+  </div>
+</footer>
+
+<script>
+  var go = document.getElementById("go"), skip = document.getElementById("skip");
+  go.href = WEB_APP_URL;
+  document.title = CONFIG.TITLE + " | SRU";
+  document.getElementById("appTitle").textContent = CONFIG.TITLE;
+  document.getElementById("appSub").textContent = CONFIG.SUBTITLE;
+  document.getElementById("appLogo").src = CONFIG.LOGO;
+  document.getElementById("appVer").textContent = "v" + CONFIG.VERSION;
+  var SKIP_KEY = CONFIG.KEY + "_skip_intro";
+  try { skip.checked = localStorage.getItem(SKIP_KEY) === "1"; } catch (e) {}
+  skip.addEventListener("change", function () {
+    try { skip.checked ? localStorage.setItem(SKIP_KEY, "1") : localStorage.removeItem(SKIP_KEY); } catch (e) {}
+  });
+</script>
+</body>
+</html>
